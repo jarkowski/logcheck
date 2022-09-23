@@ -13,7 +13,7 @@ def prepare_logs(logfile_source_path):
     call(f"rm -f /root/logcheck/log.log", shell=True)
     call(f"cp {logfile_source_path}/jicofo.log* /root/logcheck", shell=True)
     call(f"gzip -d /root/logcheck/*.gz", shell=True)
-    call(f"cat /root/logcheck/jicofo.log* > log.log", shell=True)
+    call(f"cat /root/logcheck/jicofo.log* > /root/logcheck/log.log", shell=True)
 
 
 def parse_log(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
