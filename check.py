@@ -4,6 +4,7 @@ from subprocess import call
 
 
 def prepare_logs(logfile_source_path):
+    call(f"rm -f /root/logcheck/result.csv", shell=True)
     call(f"rm -f /root/logcheck/*.gz", shell=True)
     call(f"rm -f /root/logcheck/jicofo.log*", shell=True)
     call(f"rm -f /root/logcheck/log.log", shell=True)
@@ -23,12 +24,12 @@ def parse_log(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
                 session_name = split3[0]
                 print(f"{datecode} UTC - user on session: {session_name}")
 
-                with open("result.csv", "a+") as file_object:
-                    file_object.seek(0)
-                    data = file_object.read(10)
+                with open("result.csv", "a+") as result_file:
+                    result_file.seek(0)
+                    data = result_file.read(10)
                     if len(data) > 0:
-                        file_object.write("\n")
-                    file_object.write("Test")
+                        result_file.write("\n")
+                    result_file.write(f"{datecode};{session_name}")
 
 
 if __name__ == "__main__":
