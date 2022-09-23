@@ -18,11 +18,12 @@ def parse_log(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
         for line in f:
             if grepsting in line:
                 datecode = line[datestart:dateend]
+                datecode_onlydate = line[datestart : dateend - 7]
                 split1 = line.split(leftsplit)
                 split2 = split1[1]
                 split3 = split2.split(rightsplit)
                 session_name = split3[0]
-                print(f"{datecode} UTC - user on session: {session_name}")
+                print(f"{datecode_onlydate} UTC - user on session: {session_name}")
 
                 with open("result.csv", "a+") as result_file:
                     result_file.seek(0)
