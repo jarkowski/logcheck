@@ -3,7 +3,7 @@
 from subprocess import call
 
 
-def grablogs(logfile_source_path):
+def prepare_logs(logfile_source_path):
     call(f"rm -f /root/logcheck/*.gz", shell=True)
     call(f"rm -f /root/logcheck/jicofo.log*", shell=True)
     call(f"rm -f /root/logcheck/log.log", shell=True)
@@ -12,7 +12,7 @@ def grablogs(logfile_source_path):
     call(f"cat /root/logcheck/jicofo.log* > log.log", shell=True)
 
 
-def search(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
+def parse_log(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
     with open(filename) as f:
         for line in f:
             if grepsting in line:
@@ -20,10 +20,17 @@ def search(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
                 split1 = line.split(leftsplit)
                 split2 = split1[1]
                 split3 = split2.split(rightsplit)
-                split4 = split3[0]
-                print(f"{datecode} UTC - user on session: {split4}")
+                session_name = split3[0]
+                print(f"{datecode} UTC - user on session: {session_name}")
+
+                with open("result.csv", "a+") as file_object:
+                    file_object.seek(0)
+                    data = file_object.read(10)
+                    if len(data) > 0:
+                        file_object.write("\n")
+                    file_object.write("Test")
 
 
 if __name__ == "__main__":
-    grablogs("/var/log/jitsi")
-    search("log.log", "Electing", 7, 23, "ChatMember[", "@conference.meeting")
+    prepare_logs("/var/log/jitsi")
+    parse_log("log.log", "Electing", 7, 23, "ChatMember[", "@conference.meeting")
