@@ -36,13 +36,12 @@ def parse_log(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
                     result_file.write(f"{datecode_onlydate};{datecode};{session_name}")
         print(f"=================================================")
 
+
 def sort_csv_file(csv_file):
     with open(csv_file, "r") as source_csv_file:
-        csv_lines = csv.reader(source_csv_file; delimiter=";")
+        csv_lines = csv.reader(source_csv_file, delimiter=";")
         sortedlist = sorted(csv_lines, key=operator.itemgetter(3), reverse=True)
         print(sortedlist)
-
-
 
 
 if __name__ == "__main__":
