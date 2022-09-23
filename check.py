@@ -1,5 +1,11 @@
 # ToDo:  Script graps logs, moves, unzips and cat them
 # ToDo:  Run report on login automatically
+from subprocess import call
+
+
+def grablogs(logfile_source_path):
+    call(f"cp {logfile_source_path}/jicofo.log* /root/logcheck", shell=True)
+    pass
 
 
 def search(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
@@ -15,4 +21,5 @@ def search(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
 
 
 if __name__ == "__main__":
+    grablogs("/var/log/jitsi")
     search("log.log", "Electing", 7, 23, "ChatMember[", "@conference.meeting")
