@@ -47,7 +47,7 @@ def sort_csv_file(csv_file):
     )
     summary_list = sorted_csv.groupby("datecode_onlydate")["datecode_onlydate"].count()
     summary_list.to_csv("result_summary.csv", index=False)
-    print(summary_list)
+    # print(summary_list)
     print(f"=================================================")
     print(sorted_csv)
 
