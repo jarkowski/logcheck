@@ -7,9 +7,9 @@ def grablogs(logfile_source_path):
     call(f"rm /root/logcheck/*.gz", shell=True)
     call(f"rm /root/logcheck/jicofo.log*", shell=True)
     call(f"rm /root/logcheck/log.log", shell=True)
-    return
     call(f"cp {logfile_source_path}/jicofo.log* /root/logcheck", shell=True)
     call(f"gzip -d /root/logcheck/*.gz", shell=True)
+    call(f"cat /root/logcheck/jicofo.log* > log.log", shell=True)
     pass
 
 
