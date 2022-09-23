@@ -15,22 +15,24 @@ def prepare_logs(logfile_source_path):
 
 def parse_log(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
     with open(filename) as f:
+        print(f"=================================================")
         for line in f:
             if grepsting in line:
                 datecode = line[datestart:dateend]
-                datecode_onlydate = line[datestart : dateend - 7]
+                datecode_onlydate = line[datestart : dateend - 6]
                 split1 = line.split(leftsplit)
                 split2 = split1[1]
                 split3 = split2.split(rightsplit)
                 session_name = split3[0]
-                print(f"{datecode_onlydate} UTC - user on session: {session_name}")
+                print(f"{datecode} UTC - user on session: {session_name}")
 
                 with open("result.csv", "a+") as result_file:
                     result_file.seek(0)
                     data = result_file.read(10)
                     if len(data) > 0:
                         result_file.write("\n")
-                    result_file.write(f"{datecode};{session_name}")
+                    result_file.write(f"{datecode_onlydate};{session_name}")
+        print(f"=================================================")
 
 
 if __name__ == "__main__":
