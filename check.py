@@ -44,8 +44,8 @@ def sort_csv_file(csv_file):
     )
     sorted_csv = unsorted_csv.sort_values(by=["datecode"], ascending=True)
     sorted_csv.to_csv("result_sorted.csv", index=False)
-    sorted_csv.groupby("datecode")["datecode"].count()
-    print(sorted_csv)
+    output = sorted_csv.groupby("datecode")["datecode"].count()
+    print(output)
 
 
 if __name__ == "__main__":
