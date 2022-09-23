@@ -40,7 +40,7 @@ def parse_log(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
 
 def sort_csv_file(csv_file):
     unsorted_csv = pd.read_csv(csv_file)
-    sorted_csv = unsorted_csv.sort_values(by=[0], ascending=False)
+    sorted_csv = unsorted_csv.sort_values(unsorted_csv.columns[0], ascending=False)
     sorted_csv.to_csv("result_sorted.csv", index=False)
 
 
