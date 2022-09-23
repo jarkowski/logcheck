@@ -1,8 +1,9 @@
 # ToDo:  Script graps logs, moves, unzips and cat them.
-# ToDo:  Run report on login automatically
+# ToDo:  Run report on login automatically.
 from subprocess import call
 import operator
 import csv
+import pandas as pd
 
 
 def prepare_logs(logfile_source_path):
@@ -38,10 +39,7 @@ def parse_log(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
 
 
 def sort_csv_file(csv_file):
-    with open(csv_file, "r") as source_csv_file:
-        csv_lines = csv.reader(source_csv_file, delimiter=";")
-        sortedlist = sorted(csv_lines, key=operator.itemgetter(3), reverse=True)
-        print(sortedlist)
+    pass
 
 
 if __name__ == "__main__":
