@@ -31,7 +31,7 @@ def parse_log(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
                     data = result_file.read(10)
                     if len(data) > 0:
                         result_file.write("\n")
-                    result_file.write(f"{datecode_onlydate};{session_name}")
+                    result_file.write(f"{datecode_onlydate};{datecode};{session_name}")
         print(f"=================================================")
 
 
