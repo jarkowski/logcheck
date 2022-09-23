@@ -39,7 +39,9 @@ def parse_log(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
 
 
 def sort_csv_file(csv_file):
-    unsorted_csv = pd.read_csv(csv_file, names=["date", "date_time", "session_name"])
+    unsorted_csv = pd.read_csv(
+        csv_file, delimiter=";", names=["date", "date_time", "session_name"]
+    )
     sorted_csv = unsorted_csv.sort_values(by=["date_time"], ascending=False)
     sorted_csv.to_csv("result_sorted.csv", index=False)
 
