@@ -1,4 +1,4 @@
-# ToDo:  Script graps logs, moves, unzips and cat them
+# ToDo:  Script graps logs, moves, unzips and cat them.
 # ToDo:  Run report on login automatically
 from subprocess import call
 import operator
