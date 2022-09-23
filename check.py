@@ -19,6 +19,8 @@ def prepare_logs(logfile_source_path):
 def parse_log(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
     with open(filename) as f:
         print(f"=================================================")
+        print(f"=              jitsi Meet Sessions              =")
+
         for line in f:
             if grepsting in line:
                 datecode = line[datestart:dateend]
