@@ -1,5 +1,5 @@
-# ToDo:  Script graps logs, moves, unzips and cat them.
-# ToDo:  Run report on login automatically.
+#  ToDo:  Script graps logs, moves, unzips and cat them.
+#  ToDo:  Run report on login automatically.
 from subprocess import call
 import operator
 import csv
