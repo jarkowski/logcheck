@@ -1,3 +1,7 @@
+# ToDo:  Script graps logs, moves, unzips and cat them
+# ToDo:  Run report on login automatically
+
+
 def search(filename, text):
     with open(filename) as f:
         for line in f:
@@ -6,4 +10,4 @@ def search(filename, text):
 
 
 if __name__ == "__main__":
-    search("jicofo.log", "Electing")
+    search("log.log", "Electing")
