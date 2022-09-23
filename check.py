@@ -41,12 +41,15 @@ def sort_csv_file(csv_file):
         csv_file, delimiter=";", names=["datecode", "datecode_onlydate", "session_name"]
     )
     sorted_csv = unsorted_csv.sort_values(by=["datecode"], ascending=True)
-    sorted_csv.to_csv("result_sorted.csv", index=False)
+    sorted_csv.to_csv(
+        "result_sorted.csv",
+        index=False,
+    )
     summary_list = sorted_csv.groupby("datecode_onlydate")["datecode_onlydate"].count()
     summary_list.to_csv("result_summary.csv", index=False)
     # print(summary_list)
     print(f"=================================================")
-    # print(sorted_csv)
+    print(sorted_csv)
 
 
 if __name__ == "__main__":
