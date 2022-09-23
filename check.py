@@ -34,15 +34,15 @@ def parse_log(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
                     data = result_file.read(10)
                     if len(data) > 0:
                         result_file.write("\n")
-                    result_file.write(f"{datecode_onlydate};{datecode};{session_name}")
+                    result_file.write(f"{datecode};{datecode_onlydate};{session_name}")
         print(f"=================================================")
 
 
 def sort_csv_file(csv_file):
     unsorted_csv = pd.read_csv(
-        csv_file, delimiter=";", names=["date", "date_time", "session_name"]
+        csv_file, delimiter=";", names=["datecode", "datecode_onlydate", "session_name"]
     )
-    sorted_csv = unsorted_csv.sort_values(by=["date_time"], ascending=False)
+    sorted_csv = unsorted_csv.sort_values(by=["datecode"], ascending=True)
     sorted_csv.to_csv("result_sorted.csv", index=False)
 
 
