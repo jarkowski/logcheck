@@ -27,7 +27,7 @@ def parse_log(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
                 split2 = split1[1]
                 split3 = split2.split(rightsplit)
                 session_name = split3[0]
-                print(f"{datecode} UTC - user on session: {session_name}")
+                # print(f"{datecode} UTC - user on session: {session_name}")
 
                 with open("result.csv", "a+") as result_file:
                     result_file.seek(0)
@@ -44,6 +44,7 @@ def sort_csv_file(csv_file):
     )
     sorted_csv = unsorted_csv.sort_values(by=["datecode"], ascending=True)
     sorted_csv.to_csv("result_sorted.csv", index=False)
+    sorted_csv.groupby("datecode")["datecode"].count()
 
 
 if __name__ == "__main__":
