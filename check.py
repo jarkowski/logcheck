@@ -7,7 +7,7 @@ import pandas as pd
 
 
 def prepare_logs(logfile_source_path):
-    call(f"rm -f /root/logcheck/result.csv", shell=True)
+    call(f"rm -f /root/logcheck/*.csv", shell=True)
     call(f"rm -f /root/logcheck/*.gz", shell=True)
     call(f"rm -f /root/logcheck/jicofo.log*", shell=True)
     call(f"rm -f /root/logcheck/log.log", shell=True)
@@ -39,8 +39,8 @@ def parse_log(filename, grepsting, datestart, dateend, leftsplit, rightsplit):
 
 
 def sort_csv_file(csv_file):
-    unsorted_csv = pd.read_csv(csv_file)
-    sorted_csv = unsorted_csv.sort_values(unsorted_csv.columns[1], ascending=True)
+    unsorted_csv = pd.read_csv(csv_file, names=["date", "date_time", "session_name"])
+    sorted_csv = unsorted_csv.sort_values(by=["date_time"], ascending=False)
     sorted_csv.to_csv("result_sorted.csv", index=False)
 
 
